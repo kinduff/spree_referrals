@@ -1,7 +1,7 @@
 SpreeReferrals
 ========================
 
-Introduction goes here.
+Still in development. 
 
 Installation
 ------------
