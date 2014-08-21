@@ -4,14 +4,10 @@ Spree.user_class.class_eval do
   
   attr_accessor :referral_code
 
-  before_create :create_referral
+  after_create :create_referral
   after_create :referral_check
 
   private
-    def create_referral
-      build_referral
-      true
-    end
     def referral_check
       unless self.referral_code.nil?
         referral = Referral.find_by(:code => referral_code) rescue nil
