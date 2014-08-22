@@ -1,6 +1,6 @@
-class CreateReferralUsers < ActiveRecord::Migration
+class CreateReferredRecords < ActiveRecord::Migration
   def change
-    create_table :referral_users do |t|
+    create_table :referred_records do |t|
       t.integer :user_id
       t.integer :referral_id
 

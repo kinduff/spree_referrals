@@ -34,6 +34,7 @@ require 'spree/testing_support/url_helpers'
 require 'spree_referrals/factories'
 
 RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
   config.include FactoryGirl::Syntax::Methods
 
   # == URL Helpers

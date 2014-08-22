@@ -1,5 +1,36 @@
 require 'spec_helper'
 
 describe Referral, :type => :model do
-  skip "add some examples to (or delete) #{__FILE__}"
+  it "generates a code" do
+    referral = Referral.new().create_code
+    expect(referral.code).to_not be_nil
+  end
+
+  it "generates a code after created" do
+    referral = Referral.new()
+    expect{referral.save}.to change{referral.code}
+  end
+
+  it "returns a code" do
+    referral = Referral.create()
+    expect(referral.code).to_not be_nil
+  end
+
+  context "with user" do
+    before(:each) do
+      @user = FactoryGirl.create(:user, email: Faker::Internet.email)
+      @referred = FactoryGirl.create(:user, email: Faker::Internet.email, referral_code: @user.referral.code)
+    end
+
+    it "returns an associated user record" do
+      expect(@user.referral.user).to_not be_nil
+    end
+    it "returns referred records" do
+      expect(@user.referral.referred_records.count).to eq(1)
+    end
+
+    it "returns an array of referred users" do
+      expect(@user.referral.referred_users).to eq([@referred])
+    end
+  end
 end
