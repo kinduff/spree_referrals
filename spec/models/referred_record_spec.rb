@@ -7,19 +7,23 @@ describe ReferredRecord, :type => :model do
     @referral_record = @referred.referred_record
   end
 
-  it "returns has a user id" do
+  it "has a user id" do
     expect(@referral_record.user_id).not_to be_nil
   end
 
-  it "returns an associated user record" do
-    expect(@referral_record.user).not_to be_nil
-  end
-
-  it "returns has a referral id" do
+  it "has a referral id" do
     expect(@referral_record.referral_id).not_to be_nil
   end
 
+  it "returns an associated user record" do
+    expect(@referral_record.referral.user).to eq(@user)
+  end
+
+  it "returns an associated referred user record" do
+    expect(@referral_record.user).to eq(@referred)
+  end
+
   it "returns an associated referral record" do
-    expect(@referral_record.referral).not_to be_nil
+    expect(@referral_record.referral).to eq(@user.referral)
   end
 end
