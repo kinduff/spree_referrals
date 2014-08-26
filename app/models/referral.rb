@@ -12,4 +12,8 @@ class Referral < ActiveRecord::Base
   def referred_users
     referred_records.includes(:user).map(&:user).compact
   end
+
+  def referred_orders
+    referred_records.includes(:user).map(&:user).map(&:orders).flatten.compact
+  end
 end
