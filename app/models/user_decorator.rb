@@ -15,6 +15,10 @@ Spree.user_class.class_eval do
     referral.referred_records.count
   end
 
+  def referred?
+    !referred_record.referral.user.nil? rescue false
+  end
+
   private
     def referral_check
       unless self.referral_code.nil?
