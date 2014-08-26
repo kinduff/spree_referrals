@@ -2,4 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  spree:
+    promotion_rule_types:
+      referred_promotion_rule:
+        name: "Referred User"
+        description: "Must be a referred user"
