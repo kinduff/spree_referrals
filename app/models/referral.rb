@@ -1,5 +1,5 @@
 class Referral < ActiveRecord::Base
-  belongs_to :user, class_name: Spree.user_class
+  belongs_to :user, class_name: Spree.user_class.to_s
   has_many :referred_records
 
   before_create :create_code
