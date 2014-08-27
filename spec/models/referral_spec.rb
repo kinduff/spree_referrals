@@ -20,6 +20,7 @@ describe Referral, :type => :model do
     before(:each) do
       @user = FactoryGirl.create(:user, email: Faker::Internet.email)
       @referred = FactoryGirl.create(:user, email: Faker::Internet.email, referral_code: @user.referral.code)
+      @order = FactoryGirl.create(:order, :user => @referred)
     end
 
     it "returns an associated user record" do
@@ -28,9 +29,11 @@ describe Referral, :type => :model do
     it "returns referred records" do
       expect(@user.referral.referred_records.count).to eq(1)
     end
-
     it "returns an array of referred users" do
       expect(@user.referral.referred_users).to eq([@referred])
+    end
+    it "returns an array of referred orders" do
+      expect(@user.referral.referred_orders).to eq([@order])
     end
   end
 end
