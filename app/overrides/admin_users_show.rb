@@ -14,13 +14,25 @@ Deface::Override.new(
       <th>Referral code</th>
       <td><%= @user.referral.code %></td>
     <tr>
+    </tr>
+      <th>Referred orders</th>
+      <td>
+        <ol style="margin-left: 20px;">
+          <% @user.referral.referred_orders.each do |order| %>
+            <li><%= link_to order.number, edit_admin_order_path(order) %></li>
+          <% end %>
+        <ol>
+      </td>
+    <tr>
     <tr>
       <th>Users referred</th>
       <td>
         <%= "No referred users" if @user.referral_count == 0 %>
-        <% @user.referral.referred_users.each do |user| %>
-          <p><%= link_to user.email, edit_admin_user_url(user) %></p>
-        <% end %>
+        <ol style="margin-left: 20px;">
+          <% @user.referral.referred_users.each do |user| %>
+            <li><%= link_to user.email, edit_admin_user_url(user) %></li>
+          <% end %>
+        </ol>
       </td>
     <tr>
   </tr>
