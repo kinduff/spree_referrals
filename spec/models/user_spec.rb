@@ -30,5 +30,9 @@ describe Spree::User, type: :model do
     it "has a referred record" do
       expect(@referred.referred_record).to eq(@user.referral.referred_records.first)
     end
+    it "returns boolean if referred" do
+      expect(@referred.referred?).to be_truthy
+      expect(@user.referred?).to be_falsy
+    end
   end
 end

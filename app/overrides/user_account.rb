@@ -17,21 +17,25 @@ Deface::Override.new(
 ) do
 <<-CODE.chomp
 <h3>Referral Information</h3>
-<table>
-  <thead>
-  <tr>
-    <th></th>
-    <th>Email</th>
-  </tr>
-  </thead>
-  <tbody>
-    <% @user.referral.referred_users.sort_by(&:created_at).to_enum.with_index.reverse_each do |user, i| %>
-      <tr class="<%= cycle('even', 'odd') %>">
-        <td><%= i+1 %></td>
-        <td><%= user.email %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if @user.referral_count > 1 %>
+  <table>
+    <thead>
+    <tr>
+      <th></th>
+      <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @user.referral.referred_users.sort_by(&:created_at).to_enum.with_index.reverse_each do |user, i| %>
+        <tr class="<%= cycle('even', 'odd') %>">
+          <td><%= i+1 %></td>
+          <td><%= user.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No referred users yet.</p>
+<% end %>
 CODE
 end
