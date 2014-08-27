@@ -5,7 +5,7 @@ Deface::Override.new(
 ) do
 <<-CODE.chomp
 <% if spree_current_user %>
-  <li><input type='text' value='<%= referral_url(spree_current_user.referral.code) %>' onClick='this.select();' /></li>
+  <li id="referral-code-input"><input type='text' value='<%= referral_url(spree_current_user.referral.code) %>' onClick='this.select();' /></li>
 <% end %>
 CODE
 end
