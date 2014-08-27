@@ -3,6 +3,7 @@ module SpreeReferrals
     class InstallGenerator < Rails::Generators::Base
 
       class_option :auto_run_migrations, :type => :boolean, :default => false
+      class_option :auto_run_referral_install, :type => :boolean, :default => false
 
       def add_javascripts
         append_file 'vendor/assets/javascripts/spree/frontend/all.js', "//= require spree/frontend/spree_referrals\n"
@@ -24,6 +25,15 @@ module SpreeReferrals
           run 'bundle exec rake db:migrate'
         else
           puts 'Skipping rake db:migrate, don\'t forget to run it!'
+        end
+      end
+
+      def install_referral
+        run_install = options[:auto_run_referral_install] || ['', 'y', 'Y'].include?(ask 'Would you like to enable referrals on your current User model? [Y/n]')
+        if run_install
+          run 'bundle exec rake spree_referrals:users_install'
+        else
+          puts 'Skipping rake spree_referrals:users_install, don\'t forget to run it!'
         end
       end
     end
