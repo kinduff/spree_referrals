@@ -17,7 +17,7 @@ Deface::Override.new(
 ) do
 <<-CODE.chomp
 <h3>Referral Information</h3>
-<% if @user.referral_count > 1 %>
+<% if @user.referral_count > 0 %>
   <table>
     <thead>
     <tr>
