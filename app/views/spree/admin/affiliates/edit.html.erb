@@ -37,6 +37,28 @@
         <th>Referred orders count</th>
         <td><%= @affiliate.referred_orders.count %></td>
       </tr>
+      <tr>
+        <th>Orders referred</th>
+        <td>
+          <%= "No referred orders" if @affiliate.referred_count == 0 %>
+          <ol style="margin-left: 20px;">
+            <% @affiliate.referred_orders.each do |user| %>
+              <li><%= link_to user.email, edit_admin_user_url(user) %></li>
+            <% end %>
+          </ol>
+        </td>
+      <tr>
+      <tr>
+        <th>Users referred</th>
+        <td>
+          <%= "No referred users" if @affiliate.referred_count == 0 %>
+          <ol style="margin-left: 20px;">
+            <% @affiliate.referred_users.each do |user| %>
+              <li><%= link_to user.email, edit_admin_user_url(user) %></li>
+            <% end %>
+          </ol>
+        </td>
+      <tr>
     </tbody>
   </table>
 </fieldset>
