@@ -19,7 +19,6 @@ module Spree
         begin
           render "spree/affiliates/#{partial}", layout: nil
         rescue ActionView::MissingTemplate => e
-          flash[:error] = "Missing affiliate template."
           redirect_to(root_path)
         end
       end
