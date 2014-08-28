@@ -39,7 +39,11 @@
           <td class='affiliate_partial align-center'>app/views/spree/affiliates/<%= affiliate.partial %></td>
         <% end %>
         <td class='affiliate_count align-center'><%= affiliate.referred_count %></td>
-        <td class='affiliate_status align-center' style="color: <%= affiliate_partial_exists?(affiliate.partial) ? 'green' : 'red' %>"><%= affiliate_partial_exists?(affiliate.partial) ? "Found" : "Not found" %></td>
+        <% if affiliate.partial.nil? or !affiliate_partial_exists?(affiliate.partial) %>
+          <td class='affiliate_status align-center' style="color: red">Not found</td>
+        <% elsif affiliate_partial_exists?(affiliate.partial) %>
+          <td class='affiliate_status align-center' style="color: green">Found</td>
+        <% end %>
         <td data-hook="admin_affiliates_index_row_actions" class="actions">
           <%= link_to_edit affiliate, :no_text => true %>
           <%= link_to_delete affiliate, :no_text => true %>

@@ -35,7 +35,11 @@
       </tr>
       <tr>
         <th>Partial Status</th>
-        <td style="color: <%= affiliate_partial_exists?(@affiliate.partial) ? 'green' : 'red' %>"><%= affiliate_partial_exists?(@affiliate.partial) ? "Found" : "Not found" %></td>
+        <% if @affiliate.partial.nil? or !affiliate_partial_exists?(@affiliate.partial) %>
+          <td style="color: red">Not found</td>
+        <% elsif affiliate_partial_exists?(@affiliate.partial) %>
+          <td style="color: green">Found</td>
+        <% end %>
       </tr>
       <tr>
         <th>Referred users count</th>
@@ -48,7 +52,7 @@
       <tr>
         <th>Orders referred</th>
         <td>
-          <%= "No referred orders" if @affiliate.referred_count == 0 %>
+          <%= "No referred orders" if @affiliate.referred_orders.count == 0 %>
           <ol style="margin-left: 20px;">
             <% @affiliate.referred_orders.each do |user| %>
               <li><%= link_to user.email, edit_admin_user_url(user) %></li>

@@ -9,7 +9,15 @@ Deface::Override.new(
   <table>
     <tr>
       <th>Referred by</th>
-      <td><%= @user.referred_record.nil? ? 'Organic' : link_to(@user.referred_user.email, edit_admin_user_url(@user.referred_user)) %></td>
+      <td>
+        <% if @user.referred? %>
+          <%= link_to(@user.referred_user.email, edit_admin_user_url(@user.referred_user)) %>
+        <% elsif @user.affiliate? %>
+          <%= link_to(@user.affiliate.name, edit_admin_affiliate_url(@user.affiliate)) %>
+        <% else %>
+          Organic
+        <% end %>
+      </td>
     </tr>
       <th>Referral code</th>
       <td><%= @user.referral.code %></td>
@@ -17,6 +25,7 @@ Deface::Override.new(
     </tr>
       <th>Referred orders</th>
       <td>
+        <%= "No referred orders" if @user.referral.referred_orders.count == 0 %>
         <ol style="margin-left: 20px;">
           <% @user.referral.referred_orders.each do |order| %>
             <li><%= link_to order.number, edit_admin_order_path(order) %></li>
