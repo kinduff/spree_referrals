@@ -7,7 +7,7 @@
     <% end %>
     <%= f.field_container :partial do %>
       <%= f.label :partial, Spree.t(:partial) %>
-      <p>app/views/spree/affiliates/<%= f.text_field :partial, :class => '' %></p>
+      <p>app/views/spree/affiliates/<%= f.text_field :partial %></p>
       <%= f.error_message_on :partial %>
     <% end %>
   </div>
