@@ -1,18 +1,18 @@
 require 'spec_helper'
 
-describe Referral, :type => :model do
+describe Spree::Referral, :type => :model do
   it "generates a code" do
-    referral = Referral.new().create_code
+    referral = Spree::Referral.new().create_code
     expect(referral.code).to_not be_nil
   end
 
   it "generates a code after created" do
-    referral = Referral.new()
+    referral = Spree::Referral.new()
     expect{referral.save}.to change{referral.code}
   end
 
   it "returns a code" do
-    referral = Referral.create()
+    referral = Spree::Referral.create()
     expect(referral.code).to_not be_nil
   end
 

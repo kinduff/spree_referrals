@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe ReferredPromotionRule, :type => :model do
+describe Spree::ReferredPromotionRule, :type => :model do
   before(:each) do
-    @rule = ReferredPromotionRule.new
+    @rule = Spree::ReferredPromotionRule.new
     @user = FactoryGirl.create(:user, email: Faker::Internet.email)
     @referred = FactoryGirl.create(:user, email: Faker::Internet.email, referral_code: @user.referral.code)
     @organic_order = FactoryGirl.create(:order, :user => @user)
