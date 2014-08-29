@@ -1,6 +1,8 @@
 Spree Referrals Extension
 ========================
 
+[![Build Status](https://travis-ci.org/kinduff/spree_referrals.svg?branch=master)](https://travis-ci.org/kinduff/spree_referrals)
+
 # Still in development
 
 This is a [Spree] extension that implements a simple referral system for the users, this allows users to refer other users through a hyperlink. 
