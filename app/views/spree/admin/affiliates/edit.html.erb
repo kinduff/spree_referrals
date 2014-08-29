@@ -35,7 +35,7 @@
       </tr>
       <tr>
         <th>Partial Status</th>
-        <% if @affiliate.partial.nil? or !affiliate_partial_exists?(@affiliate.partial) %>
+        <% if @affiliate.partial.blank? or !affiliate_partial_exists?(@affiliate.partial) %>
           <td style="color: red">Not found</td>
         <% elsif affiliate_partial_exists?(@affiliate.partial) %>
           <td style="color: green">Found</td>

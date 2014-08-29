@@ -39,7 +39,7 @@
             <td class='affiliate_partial align-center'>app/views/spree/affiliates/<%= affiliate.partial %></td>
           <% end %>
           <td class='affiliate_count align-center'><%= affiliate.referred_count %></td>
-          <% if affiliate.partial.nil? or !affiliate_partial_exists?(affiliate.partial) %>
+          <% if affiliate.partial.blank? or !affiliate_partial_exists?(affiliate.partial) %>
             <td class='affiliate_status align-center' style="color: red">Not found</td>
           <% elsif affiliate_partial_exists?(affiliate.partial) %>
             <td class='affiliate_status align-center' style="color: green">Found</td>
