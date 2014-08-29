@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Spree::HomeController do
+describe Spree::ReferralController do
   context "referred hyperlink" do
     it "redirects to root path" do
       spree_get :referral

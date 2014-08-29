@@ -7,3 +7,4 @@ en:
       referred_promotion_rule:
         name: "Referred User"
         description: "Must be a referred user"
+    editing_affiliate: "Editing Affiliate:" 
