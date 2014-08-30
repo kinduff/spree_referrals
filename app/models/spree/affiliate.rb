@@ -1,6 +1,6 @@
 module Spree
   class Affiliate < Spree::Base
-    has_many :referred_records, class_name: 'Spree::ReferredRecords'
+    has_many :referred_records
     validates :name, presence: true
     validates :path, presence: true
 
@@ -9,7 +9,7 @@ module Spree
     end
 
     def referred_orders
-      referred_records.includes({:user => :orders}).collect{|u| u.user.orders }.flatten.compact
+      referred_records.includes({:user => :spree_orders}).collect{|u| u.user.spree_orders }.flatten.compact
     end
 
     def referred_count
