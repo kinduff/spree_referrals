@@ -1,7 +1,7 @@
 module Spree
-  class ReferredPromotionRule < Spree::PromotionRule
+  class AffiliatedPromotionRule < Spree::PromotionRule
     def eligible?(order, options = {})
-      return true if order.user and order.user.referred?
+      return true if order.user and order.user.affiliate?
       false
     end
     def applicable?(promotable)
