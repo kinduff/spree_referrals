@@ -4,6 +4,8 @@ describe Spree::User, type: :model do
   before(:each) do
     @user = FactoryGirl.create(:user, email: Faker::Internet.email)
     @referred = FactoryGirl.create(:user, email:  Faker::Internet.email, referral_code: @user.referral.code)
+    @affiliate = Spree::Affiliate.create(name: Faker::Name.name, path: Faker::Name.name)
+    @affiliated = FactoryGirl.create(:user, email:  Faker::Internet.email, affiliate_code: @affiliate.path)
   end
   context "referral user" do
     it "has a referral record" do
@@ -33,6 +35,18 @@ describe Spree::User, type: :model do
     it "returns boolean if referred" do
       expect(@referred.referred?).to be_truthy
       expect(@user.referred?).to be_falsy
+    end
+  end
+
+  context "affiliated user" do
+    it "has an affiliate" do
+      expect(@affiliated.affiliate).to eq(@affiliate)
+    end
+    it "returns boolean if affiliated" do
+      expect(@affiliated.affiliate?).to be_truthy
+    end
+    it "returns an affiliated record" do
+      expect(@affiliated.affiliate_record).to eq(@affiliate.referred_records.first)
     end
   end
 end
