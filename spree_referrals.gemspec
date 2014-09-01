@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_referrals'
   s.authors     = 'kinduff'
-  s.version     = '2.3.1'
+  s.version     = '2.3.2'
   s.summary     = 'Add gem summary here'
   s.description = 'Add (optional) gem description here'
   s.required_ruby_version = '>= 1.9.3'
