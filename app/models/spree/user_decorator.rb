@@ -2,7 +2,7 @@ Spree.user_class.class_eval do
   has_one :referral, class_name: 'Spree::Referral'
   has_one :referred_record, class_name: 'Spree::ReferredRecord'
   has_one :affiliate, :through => :referred_record, :foreign_key => :affiliate_id, class_name: 'Spree::Affiliate'
-  has_one :affiliate_record, class_name: 'ReferredRecord'
+  has_one :affiliate_record, class_name: 'Spree::ReferredRecord'
 
   attr_accessor :referral_code, :affiliate_code
 
