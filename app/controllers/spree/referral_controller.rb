@@ -7,20 +7,16 @@ module Spree
     def affiliate
       session[:affiliate] = params[:path]
       affiliate = Spree::Affiliate.find_by(:path => params[:path]) rescue nil
-      if affiliate.nil? or affiliate.partial.blank?
+      if affiliate.nil? or affiliate.partial.blank? or !partial_exists affiliate.partial
         redirect_to(root_path)
-      else
-        render_affiliate_partial affiliate.partial
+      elsif partial_exists affiliate.partial
+        render "spree/affiliates/#{affiliate.partial}"
       end
     end
 
     private
-      def render_affiliate_partial partial
-        begin
-          render "spree/affiliates/#{partial}", layout: nil
-        rescue ActionView::MissingTemplate => e
-          redirect_to(root_path)
-        end
+      def partial_exists partial
+        lookup_context.template_exists?(partial, ["spree/affiliates"], false)
       end
   end
 end
